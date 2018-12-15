@@ -1,0 +1,37 @@
+<div class="container">
+  <h1>WELCOME {{name}}</h1><br><br>
+  <h3>YOUR PRODUCTS :</h3>
+  <table>
+    <tr>
+      <th>Product Name</th>
+      <th>Product Price</th>
+    </tr>
+    <tr *ngFor="let product of productsList">
+      <td>{{product.productName}}</td>
+      <td>{{product.productCost}}</td>
+    </tr>
+    <button type="button" class="btn btn-info btn-lg" (click)="openModal()">ADD PRODUCT</button>
+  </table>
+
+  <div *ngIf="open">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">PROVIDE DETAILS</h4>
+        </div>
+        <div class="modal-body">
+          <form #add="ngForm" (ngSubmit)="addProduct()">
+            <input type="text" name="productName" [(ngModel)]="freshProduct.productName" required>
+            <input type="number" name="productCost" [(ngModel)]="freshProduct.productCost" required>
+            <button type="submit" class="btn btn-default" [disabled]="!add.valid">Add</button>
+            <button type="button" class="btn btn-default" (click)="closeModal()">Close</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

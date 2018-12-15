@@ -1,0 +1,50 @@
+<div class="container">
+
+  <!--SIGN UP FORM -->
+  <div>
+    <div>
+      <button type="button" (click)="displaySignup()">SIGNUP</button>
+      <button type="button" (click)="displayLogin()">LOGIN</button>
+    </div>
+    <div *ngIf="signupForm"> 
+      <form #f1="ngForm" (ngSubmit)="register()" id="register">
+        <h2 class="text-center">Registration page</h2>
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" class="form-control" name="name" id="name" required [(ngModel)]="signUp.name">
+        </div>
+        <div class="form-group">
+          <label for="email">Email address:</label>
+          <input type="email" class="form-control" id="email" name="email" email required [(ngModel)]="signUp.email" #emailControl="ngModel">
+          <span class="help-bpx" *ngIf="emailControl.touched && !emailControl.valid ">Please enter the Email Value</span>
+        </div>
+        <div class="form-group">
+          <label for="pwd">Password:</label>
+          <input type="password" class="form-control" id="pwd" name="password" required minlength="6" [(ngModel)]="signUp.password" #passwordControl="ngModel">
+          <span class="help-bpx" *ngIf="passwordControl.touched && !passwordControl.valid ">Please enter your password of minimum 6 length</span>
+        </div>
+        <button type="submit" class="btn btn-default" [disabled]="!f1.valid">Submit</button>
+      </form>
+    </div>
+
+    <!--LOGIN FORM-->
+    <div *ngIf="loginForm">
+      <form #f2="ngForm" (ngSubmit)="login()" id="login"> 
+        <div class="form-group">
+          <label for="email">Email address:</label>
+          <input type="email" class="form-control" id="email" name="email" email required [(ngModel)]="loginModel.email" #emailControl="ngModel">
+          <span class="help-bpx" *ngIf="emailControl.touched && !emailControl.valid ">Please enter the Email Value</span>
+        </div>
+        <div class="form-group">
+          <label for="pwd">Password:</label>
+          <input type="password" class="form-control" id="pwd" name="password" required minlength="6" [(ngModel)]="loginModel.password" #passwordControl="ngModel">
+          <span class="help-bpx" *ngIf="passwordControl.touched && !passwordControl.valid ">Please enter your password of minimum 6 length</span>
+        </div>
+        <button type="submit" class="btn btn-default" [disabled]="!f2.valid">Submit</button>
+      </form>
+      <div *ngIf="invalid">
+        <h4>INVALID USERNAME OR PASSWORD</h4>
+      </div>
+    </div>
+
+  </div>
